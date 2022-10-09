@@ -7,6 +7,8 @@ Link: https://seedsecuritylabs.org/Labs_20.04/Software/Environment_Variable_and_
 ### Task 1
 Used printenv or env to print the environment variables.
 
+![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task1(printenv).JPG)
+
 ### Task2
 - Compiled the program given (with the command **gcc myprintenv.c** and **gcc myprintenv.c**) into two processes (parent and the child process).
 - Run both programs and directed the output to different files (child and parent).
