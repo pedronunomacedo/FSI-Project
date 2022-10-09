@@ -46,3 +46,5 @@ void main()
 ```
 
 #### Terminal
+
+![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task2(processes).JPG)
