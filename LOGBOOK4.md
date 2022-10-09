@@ -48,3 +48,31 @@ void main()
 #### Terminal
 
 ![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task2(processes).JPG)
+
+### Task3
+- 
+- 
+- 
+- 
+
+#### Program
+
+``` c
+#include <unistd.h>
+
+extern char **environ;
+
+int main()
+{
+  char *argv[2];
+
+  argv[0] = "/usr/bin/env";
+  argv[1] = NULL;
+
+  execve("/usr/bin/env", argv, environ);  
+
+  return 0 ;
+}
+```
+
+#### Terminal
