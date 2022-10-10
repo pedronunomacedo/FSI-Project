@@ -49,7 +49,7 @@ void main()
 
 ![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task2(processes).JPG)
 
-### Task3
+### Task3 (mudar -> está mal)
 - Compiled the program myenv.c (using **gcc myenv.c -o myenv**) and ran it. 
 - There was no output what so ever, because the 3rd argument passed to the function execve it's NULL. This means that the new process has no environment variables.
 - In step 2, (...)
