@@ -77,4 +77,4 @@ int main()
 
 #### Terminal
 
-![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task3_execve_.JPG)
+![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task3__diff_.png)
