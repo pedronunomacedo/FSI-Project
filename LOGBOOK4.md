@@ -47,7 +47,7 @@ void main()
 
 #### Terminal
 
-![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task2(processes).JPG)
+![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-39-19.png)
 
 ### Task3 (mudar -> está mal)
 - Compiled the program myenv.c (using **gcc myenv.c -o myenv**) and ran it. 
