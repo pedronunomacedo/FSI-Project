@@ -78,3 +78,31 @@ int main()
 #### Terminal
 
 ![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task3__diff_.png)
+
+
+### Task4
+
+- In this task, we study how environment variables are affected when a new program is executed via the
+system() function. This function is used to execute a command, but unlike execve(), which di-
+rectly executes a command, system() actually executes "/bin/sh -c command", i.e., it executes
+/bin/sh, and asks the shell to execute the command.
+- If you look at the implementation of the system() function, you will see that it uses execl() to
+execute /bin/sh; execl() calls execve(), passing to it the environment variables array. Therefore,
+using system(), the environment variables of the calling process is passed to the new program /bin/sh.
+
+
+#### Program
+
+``` c
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+system("/usr/bin/env");
+return 0 ;
+}
+```
+
+#### Terminal
+
+![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-56-30.png)
