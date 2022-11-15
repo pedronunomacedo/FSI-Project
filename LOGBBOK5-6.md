@@ -1,4 +1,4 @@
-# WEEK 5
+# WEEK 5 and 6
 
 ## SEEDs LAB
 
