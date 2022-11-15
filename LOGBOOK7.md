@@ -1,8 +1,8 @@
-# WEEK 7
+# WEEK 8 and 9
 
 ## SEEDs LAB
 
-Link: https://seedsecuritylabs.org/Labs_20.04/Software/Format_String/
+Link: https://seedsecuritylabs.org/Labs_20.04/Web/Web_SQL_Injection/
 
 ### Task 1
 
