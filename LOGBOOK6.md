@@ -16,54 +16,36 @@ Link: https://seedsecuritylabs.org/Labs_20.04/Software/Format_String/
 
 - As we can see below, the value after is 0x11223344.
 
-![Task2.A - result](img/category-software/Format_String/Task2\(code-build_string_py_file\).png)
+![Task2.A - result](img/category-software/Format_String/Task2(code-build_string_py_file).png)
 
 #### Task2.B - Heap Data
 - The purpose of this task is to print out the secret message stored in the heap area.
 
-![Task2.B - result](img/category-software/Format_String/Task2B\(result\).png)
+![Task2.B - result](img/category-software/Format_String/Task2B(result).png)
 
 - In the picture below, we can see the file used in the server (in our case, is called "badFile"). (line 17) 
 
 - In fact, we tried to figured out the number of %x we would need to get our hexadecimal mumber to be printed on the screen, caming to the conclusion that we would need 65 %s format specifiers in order to print our hexadecimal number. We used "%x"*63 in order to store 63 times the format specifier %x, and, at the end, we are concatenating our hexadecimal number. We have, in total, 65 bytes because we store 1 byte (8 bits) of our number encoded in the content array, then we store 63 %x format specifiers and then 1 byte for our hexadecimal number (1 + 63 + 1 = 65 bytes).
 
-![Tasl2.B - code](img/category-software/Format_String/Task2B(code).png)
+![Task2.B - code](img/category-software/Format_String/Task2B(code).png)
 
-#### Program
+### Task3 - Modifying the Server Program's Memory
+#### Task3.A - Change the value to a different value
+- In this case, we are supposed to change the content of the target variable (to something else we want). We chose to print the number f bytes between the address of the printf and the head address of our buffer. 
+- Firstly, we change the number variable to the address of the target variable (in this case, is 0x080e5068).
+- Secondly, we build a string that contains %x 63 times and, at the end, the number of bytes read until there (using the format specifier %n). At the end, we add this string to the content array. 
+- Doing this, we will change the value stored in the target variable's address (0x000000f0, in our case).
 
-``` c
-code in c
-```
+![Task3.A - result](img/category-software/Format_String/task3A(result).png)
+![Task3.A - code](img/category-software/Format_String/task3A(code).png)
 
-#### Terminal
+#### Task3.B
+- In this task, we want to change the content of the target variable's address to 0x5000. To do so, we though of trying to print 20480 (integer number of the hexadecimal 0x5000) times the %x format specifier. Doing so, we can use %n to print this number, as this format specifier refers to the number of bytes read until that moment.
 
-![](img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-39-19.png)
+![Task3.A - result](img/category-software/Format_String/task3B(result).png)
 
-### Task3 (mudar -> está mal)
-- (...)
+- In our code, you can see we calculated how much we needed to get 0x5000 as the %n output, and we got 20248. This printed value counts as an integer number, so we need to take one %x to compensate the extra character to be printed (0x5000).
 
-#### Program
-
-``` c
-code in c
-```
-
-#### Terminal
-
-![](img/category-software/Environment_Variable_and_SetUID/task3__diff_.png)
+![Task3.B - code](img/category-software/Format_String/task3B(code).png)
 
 
-### Task4
-
-- (...)
-
-
-#### Program
-
-``` c
-code in c
-```
-
-#### Terminal
-
-![](img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-56-30.png)
