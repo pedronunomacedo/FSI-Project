@@ -1,4 +1,4 @@
-# WEEK #n
+# WEEK 4
 
 ## SEEDs LAB
 
