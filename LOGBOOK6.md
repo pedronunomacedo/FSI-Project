@@ -16,10 +16,10 @@ Link: https://seedsecuritylabs.org/Labs_20.04/Software/Format_String/
 
 - As we can see below, the value after is 0x11223344.
 
-![Task2.B - result](img/category-software/Format_String/Task2.png)
+![Task2.A - result](img/category-software/Format_String/Task2\(code-build_string_py_file\).png)
 
 #### Task2.B - Heap Data
-- The purpose of thus task is to print out the secret message stored in the heap area.
+- The purpose of this task is to print out the secret message stored in the heap area.
 
 ![Task2.B - result](img/category-software/Format_String/Task2B\(result\).png)
 
