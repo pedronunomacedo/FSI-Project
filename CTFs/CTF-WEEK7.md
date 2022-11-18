@@ -4,7 +4,7 @@
 
 - We need to execute the command 'checksec program', in order to see the definition and information of the file **program**.
 
-[]!("CTFs/Img/Semana7-Desafio1/1._checksec.png")
+[1. checksec command]('CTFs/Img/Semana7-Desafio1/ 1._checksec.png')
 
 We can conclude that:
 
