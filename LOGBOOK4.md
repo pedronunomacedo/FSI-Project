@@ -7,7 +7,7 @@ Link: https://seedsecuritylabs.org/Labs_20.04/Software/Environment_Variable_and_
 ### Task 1
 Used printenv or env to print the environment variables.
 
-![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task1(printenv).JPG)
+<img src="img/category-software/Environment_Variable_and_SetUID/task1(printenv).JPG" alt="Terminal print of task 1" width="70%"/><br/>
 
 ### Task2
 - Compiled the program given (with the command **gcc myprintenv.c** and **gcc myprintenv.c**) into two processes (parent and the child process).
@@ -47,7 +47,7 @@ void main()
 
 #### Terminal
 
-![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-39-19.png)
+<img src="img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-39-19.png" alt="Terminal print of task 1" width="70%"/><br/>
 
 ### Task3 (mudar -> está mal)
 - Compiled the program myenv.c (using **gcc myenv.c -o myenv**) and ran it. 
@@ -77,7 +77,7 @@ int main()
 
 #### Terminal
 
-![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/task3__diff_.png)
+<img src="img/category-software/Environment_Variable_and_SetUID/task3__diff_.png" alt="Terminal print of task 1" width="70%"/><br/>
 
 
 ### Task4
@@ -105,4 +105,4 @@ return 0 ;
 
 #### Terminal
 
-![Terminal print of task 1](img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-56-30.png)
+<img src="img/category-software/Environment_Variable_and_SetUID/Captura_de_ecrã_de_2022-10-12_09-56-30.png" alt="Terminal print of task 1" width="70%"/><br/>
