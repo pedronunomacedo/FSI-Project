@@ -4,7 +4,7 @@
 
 - We need to execute the command 'checksec program', in order to see the definition and information of the file **program**.
 
-![Terminal print - checksec](CTFs/Img/Semana7-Desafio1/1.checksec.png)
+<img src="CTFs/Img/Semana7-Desafio1/1.checksec.png" alt="Terminal print - checksec" width="60%"/><br/>
 
 We can conclude that:
 
@@ -36,17 +36,17 @@ We will use the debugger gdb to get the address of the flag global variable.
 
 ### Flag's memory address
 
-![Terminal print - _gdb_ debugger](CTFs/Img/Semana7-Desafio1/2.debugger-gdb.png)
+<img src="CTFs/Img/Semana7-Desafio1/2.debugger-gdb.png" alt="Terminal print - _gdb_ debugger" width="60%"/><br/>
 
 - As we can see in the picture above, the address of the flag global variable is **0x804c060**.
 
 ### Exploit
 
-![File print - exploit_example.py](CTFs/Img/Semana7-Desafio1/3.exploitFile.png)
+<img src="CTFs/Img/Semana7-Desafio1/3.exploitFile.png" alt="File print - exploit_example.py" width="60%"/><br/>
 
 - Now, in order to get the flag, we just need to compile the exploit_example.py file and check the result flag.
 
-![file print - result (flag)](CTFs/Img/Semana7-Desafio1/4.result_exploit_flag.png)
+<img src="CTFs/Img/Semana7-Desafio1/4.result_exploit_flag.png" alt="file print - result (flag)" width="60%"/><br/>
 
 `flag{5b54eade3016fad2273920d8064491}`
 
@@ -54,7 +54,7 @@ We will use the debugger gdb to get the address of the flag global variable.
 
 - We need to execute the command 'checksec program', in order to see the definition and information of the file **program**.
 
-![Terminal print - checksec](CTFs/Img/Semana7-Desafio2/1.checksec.png)
+<img src="CTFs/Img/Semana7-Desafio2/1.checksec.png" alt="Terminal print - checksec" width="60%"/><br/>
 
 ### Qual é a linha do código onde a vulnerabilidade se encontra?
 
@@ -75,13 +75,14 @@ The flag is not loaded to memory. This _flag_ is stored in a file on the target 
 ### Para desbloqueares essa funcionalidade o que é que tens de fazer?
 
 - Firstly, we start by using the debugger `gdb` to get the address of the _key_ global variable. 
-![Terminal print - gdb](CTFs/Img/Semana7-Desafio2/2.gdb-program.png)
+
+<img src="CTFs/Img/Semana7-Desafio2/2.gdb-program.png" alt="Terminal print - gdb" width="60%"/><br/>
 
 - Secondly, if we write the correct number of bytes using the `printf` function. This function moves forward in the stack, trying to read something from the stack. 
 
 - Calling various `%` commands advances the pointer of the `printf` forward. Doing this will make the printf pointer to point to the beggining og the variable pretended _key_.
 
-![Terminal print - result (flag)](CTFs/Img/Semana7-Desafio2/3.result_exploit_flag.png)
+<img src="CTFs/Img/Semana7-Desafio2/3.result_exploit_flag.png" alt="Terminal print - result (flag)" width="60%"/><br/>
 
 ### Flag
 
