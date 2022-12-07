@@ -84,4 +84,4 @@ p.sendline(shellcode + finalString)
 
 Tentamos fazer overwrite do endereço de retorno da função colocando o código referente à shellcode (shellcode). Quando este retornar este enderenço na função, vai executar o código que estiver nesse endereço, ou seja, vai executar as instruções na shellcode (mas em código).
 
-![termina print - flag result](CTFs/Img/Semana8-Desafio2/3.result_flag.png)
+![terminal print - flag result](CTFs/Img/Semana8-Desafio2/3.result_flag.png)
