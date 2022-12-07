@@ -4,7 +4,7 @@
 
 **1.** Ao analisar o ficheiro _index.php_, podémos verificar que este continha uma linha onde é possível ocorrer um vulnerabilidade. 
 
-[Terminal print - index.php file](CTFs/Img/Semana8-Desafio1/1.index_php.png)
+![Terminal print - index.php file](CTFs/Img/Semana8-Desafio1/1.index_php.png)
 
 - Podemos verificar que podemos inserir, na linha em baixo no campo $username, uma subquery que nos permita fazer login com a conta do administrador.
 
@@ -20,7 +20,7 @@ $query = "SELECT username FROM user WHERE username = '".$username."' AND passwor
 ```sql
 admin'; --
 ```
-[Terminal print - login page](CTFs/Img/Semana8-Desafio1/2.login.png)
+![Terminal print - login page](CTFs/Img/Semana8-Desafio1/2.login.png)
 
 
 **3.** Ao instroduzir a _stirng_ referida em cima, podemos verificar que a query do ficheiro vai ficar:
@@ -31,7 +31,7 @@ SELECT username FROM user WHERE username = 'admin'; -- ".$username."' AND passwo
 
 - Assim, conseguimos fazer "login" na conta do administrador e obter a flag.
 
-[Terminal print - flag result](CTFs/Img/Semana8-Desafio1/3.result.png)
+![Terminal print - flag result](CTFs/Img/Semana8-Desafio1/3.result.png)
 
 ## Challenge #2
 
