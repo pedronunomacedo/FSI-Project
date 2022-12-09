@@ -35,10 +35,8 @@ int main(){
 
 ![](https://i.imgur.com/EHAN2Q7.png)
 
-- Finally, we opened _last_log_ file, waited a few seconds and there it was the flag:
-
-![]()
+- Finally, we opened _last_log_ file, waited a few seconds and there it was the flag.
 
 ### Flag
 
-`flag{8d7bfe1e7b6054abd589c987c0a7e1ee}`
+`flag{2f761ab782abaf2784f9d678ad9abfe}`
