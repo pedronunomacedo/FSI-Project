@@ -5,7 +5,7 @@
 - We started this challenge by checking what were the configurations of the _program_ file (using the _checksec_ function).
 
 <p align="center">
-<img src="CTFs/Opcionals/Img/2-Final_Format/1.checksec.png" alt="file print - result (flag)" />
+<img src="CTFs/Opcionals/Img/2-Final_Format/1.checksec.png" alt="file print - result (flag)" width="70%"/>
 </p><br/>
 
 - After some time, we could check that on the path `home/flag_reader` we have found that the **my_script.sh** file where we could see the printenv command being used to call a relative path.
