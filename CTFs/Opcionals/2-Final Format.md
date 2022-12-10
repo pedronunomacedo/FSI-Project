@@ -1,4 +1,4 @@
-# Opcional CTF - Final Format
+# Optional CTF - Final Format
 
 - We started this challenge by checking what were the configurations of the _program_ file (using the _checksec_ function). We can see in the image below that this file is protected with canary's. So, writing in the stack would be a tough task.
 
