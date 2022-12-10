@@ -1,7 +1,5 @@
 # Opcional CTF - Final Format
 
-## Final Format
-
 - We started this challenge by checking what were the configurations of the _program_ file (using the _checksec_ function). We can see in the image below that this file is protected with canary's. So, writing in the stack would be a tough task.
 
 <img src="CTFs/Opcionals/Img/2-Final_Format/1.checksec.png" alt="file print - result (flag)" width="70%"/><br/>
