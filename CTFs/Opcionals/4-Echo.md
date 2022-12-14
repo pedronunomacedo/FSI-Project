@@ -1,8 +1,10 @@
 # Optional CTF - Echo
+<figure>
+<img src='https://2603957456-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-LFEMnER3fywgFHoroYn%2F-MXwAmlrjE8Ejl_0OQQX%2F-MY1FO9lURZfx9fTrAf0%2Fimage.png?alt=media&token=39659182-e3ff-4d34-a031-c7091567890a' />
+<figcaption>Stak explanation (link: https://2603957456-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-LFEMnER3fywgFHoroYn%2F-MXwAmlrjE8Ejl_0OQQX%2F-MY1FO9lURZfx9fTrAf0%2Fimage.png?alt=media&token=39659182-e3ff-4d34-a031-c7091567890a)</figcaption>
+</figure>
 
-![Quick explanation]()
-
-1. Firstly, we checked the file given using the checksec command.
+**1.** Firstly, we checked the file given using the checksec command.
 
 ![Image 01 - checksec file program](CTFs/Opcionals/Img/4-Echo/1.checksec_program.png)
 
@@ -20,7 +22,7 @@ strings -a -t x libc.so.6 | grep "/bin/sh"
 
 - This means that, in our vulnerable program, at address 0x1bd0f5 we should see the string `/bin/sh`.
 
-2. Secondly, we need to find the offset address of the _libc_ library.
+**2.** Secondly, we need to find the offset address of the _libc_ library.
 
 ```bash
 readelf.py -s libc.so.6 lgrep system
@@ -30,7 +32,7 @@ readelf.py -s libc.so.6 lgrep system
 
 - In this case, we can conclude that the memeory address of the offset of the _libc_ library is `0x00048150`.
 
-3. Thirdly, we need to find the address where the vulnerability starts in our program.
+**3.** Thirdly, we need to find the address where the vulnerability starts in our program.
 
 ```bash
 (gdb) info proc map
@@ -39,7 +41,7 @@ readelf.py -s libc.so.6 lgrep system
 - From the output we can conclude that the base address of the _libc_ library where the vulnerability starts in our _program_ file is at 0xf7d89000.
 
 
-4. After getting all this values, we can create a python script that prints all the values that are on the memory interval of the _libc_ library. 
+**4.** After getting all this values, we can create a python script that prints all the values that are on the memory interval of the _libc_ library. 
 
 ```py
 #!/usr/bin/python3
@@ -71,7 +73,7 @@ p.interactive()
 - We also need to store the value of the canary in order to store it after the stack be overwritten (address of canary is `0x59e48500`).
 
 
-5. After getting all this 5 values, we need to create a python script in order to unloack the working directory and cat the flag.
+**5.** After getting all this 5 values, we need to create a python script in order to unloack the working directory and cat the flag.
 
 ```py
 #!/usr/bin/python3
