@@ -1,5 +1,7 @@
 # Optional CTF - Echo
 
+![Quick explanation]()
+
 1. Firstly, we checked the file given using the checksec command.
 
 ![Image 01 - checksec file program](CTFs/Opcionals/Img/4-Echo/1.checksec_program.png)
@@ -58,9 +60,16 @@ for i in range(1,14):
 p.interactive()
 ```
 
-![Image4 - getValues.py file result](CTFs/Opcionals/Img/4-Echo/4.address_in_the_middle_of_the_stack.png)
+![Image4 - getValues.py value in the middle](CTFs/Opcionals/Img/4-Echo/4.address_in_the_middle_of_the_stack.png)
 
-- From the result, we need to store the value that is between the start address of the program file and the end address of the same. We ca conclude, in this case, that the value is `0xf7e24ecb`. In our case, we used the value got on the 1st try `0xf7daa519`.
+- From the result, we need to store the value that is between the start address of the program file and the end address of the same. We ca conclude, in this case, that the value is `0xf7e24ecb`. In our case, we used the value got on the 1st try `0xf7daa519`. 
+
+- After this, run once again the getValues.py file.
+
+![Image5 - getValues.py canary address](CTFs/Opcionals/Img/4-Echo/5.get_value_result.png)
+
+- We also need to store the value of the canary in order to store it after the stack be overwritten (address of canary is `0x59e48500`).
+
 
 5. After getting all this 5 values, we need to create a python script in order to unloack the working directory and cat the flag.
 
@@ -113,7 +122,7 @@ p.interactive()
 
 - Running this python script, we are able to enter the working directory and get the _flag.txt_.
 
-![Image5 - exploit-example.py result, flag](CTFs/Opcionals/Img/4-Echo/5.flag_result.png)
+![Image6 - exploit-example.py result, flag](CTFs/Opcionals/Img/4-Echo/6.flag_result.png)
 
 
 ### Flag
