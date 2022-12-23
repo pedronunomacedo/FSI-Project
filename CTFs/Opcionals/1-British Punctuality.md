@@ -12,7 +12,7 @@
 
 ![](https://i.imgur.com/oVnHK2D.png)
 
-- After some time, we could coonfirm that the server was performing the script each every minute. Unfortunately, we dont't have access to the _flag_ file but the _cron_ has.
+- After some time, we could confirm that the server was performing the script each every minute. Unfortunately, we dont't have access to the _flag_ file but the _cron_ has.
 
 - With this in mind, we created ```aux.c``` with code to open flag.txt:
 
